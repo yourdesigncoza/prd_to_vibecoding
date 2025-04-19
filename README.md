@@ -45,7 +45,13 @@ npm install task-manager-cli
 
 ### Configuration
 
-You can use the built-in initialization script to create a sample tasks file:
+First, initialize a Node.js project if you haven't already:
+
+```bash
+npm init -y
+```
+
+Then you can use the built-in initialization script to create a sample tasks file:
 
 ```bash
 tasks-init

@@ -29,7 +29,13 @@ npm install -g task-manager-cli
 
 ## Setup in Your Project
 
-1. Create a `tasks.json` file in your project root:
+1. Initialize a Node.js project if you haven't already:
+
+```bash
+npm init -y
+```
+
+2. Create a `tasks.json` file in your project root:
 
 ```json
 {
@@ -64,7 +70,7 @@ npm install -g task-manager-cli
 }
 ```
 
-2. Add scripts to your `package.json`:
+3. Add scripts to your `package.json`:
 
 ```json
 "scripts": {
