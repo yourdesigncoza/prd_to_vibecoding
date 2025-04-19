@@ -1,0 +1,47 @@
+{
+  "name": "task-manager-cli",
+  "version": "1.0.0",
+  "description": "A CLI tool for managing project tasks with dependencies and subtasks",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "tasks": "./bin/tasks.js",
+    "tasks-init": "./scripts/create-tasks-template.js",
+    "tasks-add-scripts": "./scripts/add-scripts-to-package.js",
+    "tasks-migrate": "./scripts/migrate-tasks.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "tasks-show": "node bin/tasks.js show",
+    "tasks-start": "node bin/tasks.js start",
+    "tasks-complete": "node bin/tasks.js complete",
+    "tasks-next": "node bin/tasks.js next",
+    "tasks-reset": "node bin/tasks.js reset",
+    "tasks-init": "node scripts/create-tasks-template.js",
+    "tasks-add-scripts": "node scripts/add-scripts-to-package.js",
+    "tasks-migrate": "node scripts/migrate-tasks.js",
+    "make-executable": "node scripts/make-executable.js",
+    "create-zip": "node scripts/create-zip.js",
+    "prepare": "npm run build && npm run make-executable",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "task",
+    "management",
+    "cli",
+    "project",
+    "dependencies",
+    "subtasks"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^11.1.0",
+    "console-table-printer": "^2.12.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.30",
+    "typescript": "^5.8.3"
+  }
+}
