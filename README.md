@@ -22,8 +22,8 @@ This project is heavily influenced by [claude-task-master](https://github.com/ey
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/task-manager-cli.git
-cd task-manager-cli
+git clone https://github.com/yourdesigncoza/prd_to_vibecoding.git
+cd prd_to_vibecoding
 
 # Install dependencies
 npm install

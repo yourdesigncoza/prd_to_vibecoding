@@ -8,8 +8,8 @@ This guide will help you install and use the Task Manager CLI in your project.
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/task-manager-cli.git
-cd task-manager-cli
+git clone https://github.com/yourdesigncoza/prd_to_vibecoding.git
+cd prd_to_vibecoding
 
 # Install dependencies
 npm install
