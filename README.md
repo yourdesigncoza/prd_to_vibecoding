@@ -28,8 +28,15 @@ cd prd_to_vibecoding
 # Install dependencies
 npm install
 
+# Fix TypeScript errors (if any)
+# You may need to update import paths in src/tasks_table.ts to include .js extensions
+# and add explicit type annotations to filter callbacks
+
 # Build the project
 npm run build
+
+# Make scripts executable
+npm run make-executable
 
 # Link the package globally
 npm link
@@ -37,27 +44,30 @@ npm link
 
 ### As a Dependency
 
-```bash
-npm install task-manager-cli
-```
+**Note**: This package is not yet published to npm. Use the local installation method above.
 
 ## Usage
 
+### Initial Setup
+
+After installation, you need to create a tasks.json file before you can use the task manager:
+
+```bash
+# Create a sample tasks.json file
+tasks-init
+```
+
+This will create a `tasks.json` file in your project root with sample tasks.
+
 ### Configuration
 
-First, initialize a Node.js project if you haven't already:
+If you're using the task manager in a different project, first initialize a Node.js project if you haven't already:
 
 ```bash
 npm init -y
 ```
 
-Then you can use the built-in initialization script to create a sample tasks file:
-
-```bash
-tasks-init
-```
-
-This will create a `tasks.json` file in your project root with sample tasks.
+Then create a tasks.json file using the tasks-init command as shown above.
 
 You can also add the task management scripts to your package.json:
 
@@ -65,15 +75,15 @@ You can also add the task management scripts to your package.json:
 tasks-add-scripts
 ```
 
-This will add the following scripts to your package.json:
+This will add task management scripts to your package.json. Note that the actual scripts in the repository use `node bin/tasks.js` instead of just `tasks`:
 
 ```json
 "scripts": {
-  "tasks-show": "tasks show",
-  "tasks-start": "tasks start",
-  "tasks-complete": "tasks complete",
-  "tasks-next": "tasks next",
-  "tasks-reset": "tasks reset"
+  "tasks-show": "node bin/tasks.js show",
+  "tasks-start": "node bin/tasks.js start",
+  "tasks-complete": "node bin/tasks.js complete",
+  "tasks-next": "node bin/tasks.js next",
+  "tasks-reset": "node bin/tasks.js reset"
 }
 ```
 
@@ -189,19 +199,7 @@ tasks reset --yes
 
 ### NPM Scripts
 
-You can also add these commands to your `package.json` scripts:
-
-```json
-"scripts": {
-  "tasks-show": "tasks show",
-  "tasks-start": "tasks start",
-  "tasks-complete": "tasks complete",
-  "tasks-next": "tasks next",
-  "tasks-reset": "tasks reset"
-}
-```
-
-Then you can run them with:
+If you've added the task management scripts to your package.json, you can run them with:
 
 ```bash
 npm run tasks-show
@@ -210,6 +208,40 @@ npm run tasks-complete 1.2
 npm run tasks-next
 npm run tasks-reset -- --yes
 ```
+
+## Troubleshooting
+
+### TypeScript Errors
+
+If you encounter TypeScript errors during the build process, you may need to:
+
+1. Add `.js` extensions to import statements in TypeScript files:
+
+   ```typescript
+   // Change this:
+   import { Task, TaskManager } from './tasks_manager';
+
+   // To this:
+   import { Task, TaskManager } from './tasks_manager.js';
+   ```
+
+2. Add explicit type annotations to filter callbacks:
+
+   ```typescript
+   // Change this:
+   filteredTasks = filteredTasks.filter(task => task.status === statusFilter);
+
+   // To this:
+   filteredTasks = filteredTasks.filter((task: Task) => task.status === statusFilter);
+   ```
+
+### Command Not Found
+
+If you get a "command not found" error when trying to run the `tasks` command, make sure you've:
+
+1. Built the project with `npm run build`
+2. Made the scripts executable with `npm run make-executable`
+3. Linked the package globally with `npm link`
 
 ## Programmatic Usage
 
