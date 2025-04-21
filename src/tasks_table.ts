@@ -1,5 +1,5 @@
 import { Table } from 'console-table-printer';
-import { Task, TaskManager } from './tasks_manager';
+import { Task, TaskManager } from './tasks_manager.js';
 
 /**
  * Get the terminal width
@@ -29,7 +29,7 @@ function truncate(str: string, maxLength: number): string {
  */
 export function printTasksTable(taskManager: TaskManager, statusFilter?: string, priorityFilter?: string, forceCompact?: boolean): void {
   const tasks = taskManager.getAllTasks();
-  
+
   // Check terminal width to determine if we should show the description column
   const terminalWidth = getTerminalWidth();
   const showDescription = !forceCompact && terminalWidth > 120; // Only show description if terminal is wide enough and compact mode is not forced
@@ -64,10 +64,10 @@ export function printTasksTable(taskManager: TaskManager, statusFilter?: string,
   // Filter tasks
   let filteredTasks = tasks;
   if (statusFilter) {
-    filteredTasks = filteredTasks.filter(task => task.status === statusFilter);
+    filteredTasks = filteredTasks.filter((task: Task) => task.status === statusFilter);
   }
   if (priorityFilter) {
-    filteredTasks = filteredTasks.filter(task => task.priority === priorityFilter);
+    filteredTasks = filteredTasks.filter((task: Task) => task.priority === priorityFilter);
   }
 
   // Add tasks to table
